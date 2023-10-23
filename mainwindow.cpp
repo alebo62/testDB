@@ -20,9 +20,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     model = new QSqlTableModel(this, db);
     model->setTable("Calls");
+
+    QString headers[4] = {"Кто", "Кого", "Время", "Длительность"};
+    for(int i = 0; i < model->columnCount();i++)
+        model->setHeaderData(i, Qt::Horizontal, headers[i]);
+
     model->select();
 
     ui->tableView->setModel(model);
+
+
 }
 
 MainWindow::~MainWindow()
